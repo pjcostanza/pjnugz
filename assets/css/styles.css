@@ -156,3 +156,10 @@ body{
 
 /* Make close button visible on dark */
 .btn-close{ filter: invert(1) grayscale(100%); }
+
+.card-soft h3,
+.card-soft .h5 {
+  color: var(--text);
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.35);
+}

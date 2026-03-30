@@ -1,0 +1,158 @@
+:root{
+  --bg: #0f1511;
+  --panel: rgba(25, 33, 28, 0.75);
+  --panel-solid: #18211c;
+  --text: #eaf0ec;
+  --muted: rgba(234,240,236,.72);
+  --soft: rgba(234,240,236,.14);
+  --olive: #7ea46b;
+  --olive-2: #5f8c56;
+  --sand: #c9bda6;
+  --ring: rgba(126,164,107,.45);
+}
+
+html, body{ height:100%; }
+body{
+  background:
+    radial-gradient(1200px 700px at 10% 0%, rgba(126,164,107,.20), transparent 60%),
+    radial-gradient(900px 600px at 95% 10%, rgba(201,189,166,.14), transparent 55%),
+    linear-gradient(180deg, #0b100d 0%, var(--bg) 100%);
+  color: var(--text);
+}
+
+/* Bootstrap tweaks */
+.navbar-dark .navbar-nav .nav-link{ color: rgba(234,240,236,.85); }
+.navbar-dark .navbar-nav .nav-link:hover{ color: #fff; }
+
+.glass-nav{
+  background: rgba(10,14,12,.65);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--soft);
+}
+
+.border-soft{ border-color: var(--soft) !important; }
+
+.panel, .bg-panel{ 
+  background: var(--panel);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+}
+
+.card-soft{
+  background: rgba(20, 27, 23, 0.75);
+  border: 1px solid var(--soft);
+  border-radius: 16px;
+}
+
+.hero{
+  position: relative;
+  border-bottom: 1px solid var(--soft);
+}
+
+.kicker{
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  font-size: .75rem;
+  color: var(--muted);
+}
+
+.text-subtle{ color: var(--muted) !important; }
+.link-subtle{ color: rgba(201,189,166,.95); text-decoration: none; }
+.link-subtle:hover{ color: #fff; text-decoration: underline; }
+
+.brand-mark{
+  width: 26px; height: 26px;
+  display:inline-grid; place-items:center;
+  border-radius: 10px;
+  background: rgba(126,164,107,.20);
+  border: 1px solid rgba(126,164,107,.25);
+  color: rgba(234,240,236,.92);
+}
+
+.btn-olive{
+  --bs-btn-bg: var(--olive);
+  --bs-btn-border-color: var(--olive);
+  --bs-btn-hover-bg: var(--olive-2);
+  --bs-btn-hover-border-color: var(--olive-2);
+  --bs-btn-color: #0c120f;
+  --bs-btn-hover-color: #0c120f;
+  box-shadow: 0 10px 25px rgba(126,164,107,.20);
+}
+
+.btn-outline-light{
+  border-color: rgba(234,240,236,.28);
+}
+
+.alert-soft{
+  background: rgba(126,164,107,.12);
+  border: 1px solid rgba(126,164,107,.22);
+  color: rgba(234,240,236,.9);
+}
+
+.icon-card{
+  padding: 18px;
+  border-radius: 16px;
+  background: rgba(20, 27, 23, 0.65);
+  border: 1px solid var(--soft);
+  height: 100%;
+}
+.icon-card .icon{
+  width: 42px; height: 42px;
+  border-radius: 14px;
+  display:grid; place-items:center;
+  background: rgba(201,189,166,.12);
+  border: 1px solid rgba(201,189,166,.18);
+  margin-bottom: 12px;
+}
+
+.category-tile{
+  display:block;
+  border-radius: 18px;
+  padding: 28px;
+  background:
+    linear-gradient(135deg, rgba(126,164,107,.18), rgba(20,27,23,.55)),
+    radial-gradient(800px 300px at 0% 0%, rgba(201,189,166,.16), transparent 60%);
+  border: 1px solid var(--soft);
+  text-decoration:none;
+  color: var(--text);
+  min-height: 120px;
+  position: relative;
+  overflow: hidden;
+}
+.category-tile:hover{ outline: 2px solid var(--ring); outline-offset: 2px; }
+.category-tile .label{ font-weight: 600; }
+
+.pay-tile{
+  display:block;
+  padding: 16px;
+  border-radius: 16px;
+  background: rgba(20, 27, 23, 0.65);
+  border: 1px solid var(--soft);
+  color: var(--text);
+  text-decoration:none;
+}
+.pay-tile:hover{ outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.placeholder-img{ 
+  background:
+    linear-gradient(135deg, rgba(126,164,107,.18), rgba(20,27,23,.6)),
+    radial-gradient(500px 220px at 30% 20%, rgba(201,189,166,.14), transparent 60%);
+}
+
+.bg-img{ border-radius: 14px; border: 1px solid var(--soft); }
+
+.prose p, .prose li{ color: var(--muted); }
+.prose h2{ margin-top: 1.6rem; }
+
+.form-control, .form-select{
+  background: rgba(12, 16, 14, .55);
+  border: 1px solid rgba(234,240,236,.18);
+  color: var(--text);
+}
+.form-control:focus, .form-select:focus{
+  box-shadow: 0 0 0 .25rem var(--ring);
+  border-color: rgba(126,164,107,.5);
+}
+
+/* Make close button visible on dark */
+.btn-close{ filter: invert(1) grayscale(100%); }

@@ -3,42 +3,61 @@
   if (YEAR) YEAR.textContent = new Date().getFullYear();
 
   // --- Age gate (required 21+) ---
-  const AGE_KEY = 'pjnugz_age_ok_v1';
-  const gateEl = document.getElementById('ageGate');
-  const confirmBox = document.getElementById('confirm21');
-  const enterBtn = document.getElementById('enterSiteBtn');
-  const leaveBtn = document.getElementById('leaveSiteBtn');
+const AGE_KEY = 'pjnugz_age_ok_v1';
+const gateEl = document.getElementById('ageGate');
+const confirmBox = document.getElementById('confirm21');
+const enterBtn = document.getElementById('enterSiteBtn');
+const leaveBtn = document.getElementById('leaveSiteBtn');
 
-  function showGate() {
-    if (!gateEl) return;
-    const ok = localStorage.getItem(AGE_KEY) === 'true';
-    if (ok) return;
-    const modal = new bootstrap.Modal(gateEl);
-    modal.show();
+/* ✅ DEV BYPASS: suppress age gate in Dreamweaver / local preview */
+const isLocalDev =
+  location.hostname === '' ||                 // file:// preview (Dreamweaver)
+  location.hostname === 'localhost' ||
+  location.hostname === '127.0.0.1';
 
-    if (confirmBox && enterBtn) {
-      confirmBox.checked = false;
-      enterBtn.disabled = true;
-      confirmBox.addEventListener('change', () => {
-        enterBtn.disabled = !confirmBox.checked;
-      }, { once: false });
-    }
+function showGate() {
+  if (!gateEl) return;
 
-    if (enterBtn) {
-      enterBtn.onclick = () => {
-        if (confirmBox && !confirmBox.checked) return;
-        localStorage.setItem(AGE_KEY, 'true');
-        modal.hide();
-      };
-    }
-
-    if (leaveBtn) {
-      leaveBtn.onclick = () => {
-        // Redirect away; user can change this destination.
-        window.location.href = 'https://www.google.com';
-      };
-    }
+  /* ✅ Skip age gate entirely during local development */
+  if (isLocalDev) {
+    localStorage.setItem(AGE_KEY, 'true');
+    return;
   }
+
+  const ok = localStorage.getItem(AGE_KEY) === 'true';
+  if (ok) return;
+
+  const modal = new bootstrap.Modal(gateEl);
+  modal.show();
+
+  if (confirmBox && enterBtn) {
+    confirmBox.checked = false;
+    enterBtn.disabled = true;
+    confirmBox.addEventListener(
+      'change',
+      () => {
+        enterBtn.disabled = !confirmBox.checked;
+      },
+      { once: false }
+    );
+  }
+
+  if (enterBtn) {
+    enterBtn.onclick = () => {
+      if (confirmBox && !confirmBox.checked) return;
+      localStorage.setItem(AGE_KEY, 'true');
+      modal.hide();
+    };
+  }
+
+  if (leaveBtn) {
+    leaveBtn.onclick = () => {
+      // Redirect away; user can change this destination.
+      window.location.href = 'https://www.google.com';
+    };
+  }
+}
+``
 
   // Trigger on load
   if (gateEl) {

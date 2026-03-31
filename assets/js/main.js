@@ -132,3 +132,10 @@ function showGate() {
     }, false);
   }
 })();
+
+// Clear form fields after submission so back-button doesn't restore data
+window.onbeforeunload = () => {
+  for (const form of document.getElementsByTagName('form')) {
+    form.reset();
+  }
+};

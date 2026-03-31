@@ -163,3 +163,11 @@ body{
   font-weight: 600;
   text-shadow: 0 1px 2px rgba(0,0,0,0.35);
 }
+
+/* Price styling for product cards */
+.price {
+  color: var(--sand);
+  font-weight: 600;
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+}

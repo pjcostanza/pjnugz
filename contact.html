@@ -41,57 +41,132 @@
         <p class="text-subtle">For orders: include the SKU(s), your payment method, and shipping details.</p>
 
         <!-- Replace action with your Formspree/Getform endpoint -->
-        <form action="https://formspree.io/f/xnjovaqr" method="POST">
-          <div class="row g-3">
-            <div class="col-md-6">
-              <label class="form-label" for="name">Name <span class="text-danger">*</span></label>
-              <input class="form-control" id="name" name="name" type="text" required>
-              <div class="invalid-feedback">Name is required.</div>
-            </div>
-            <div class="col-md-6">
-              <label class="form-label" for="phone">Phone <span class="text-danger">*</span></label>
-              <input class="form-control" id="phone" name="phone" type="tel" required inputmode="tel" placeholder="(555) 555-5555">
-              <div class="invalid-feedback">Phone number is required.</div>
-            </div>
-            <div class="col-12">
-              <label class="form-label" for="email">Email</label>
-              <input class="form-control" id="email" name="email" type="email" placeholder="you@example.com">
-              <div class="form-text text-subtle">Optional, but helpful for receipts and order updates.</div>
-            </div>
-            <div class="col-12">
-              <label class="form-label" for="heard">How did you hear about us? <span class="text-danger">*</span></label>
-              <select class="form-select" id="heard" name="heard" required>
-                <option value="" selected disabled>Select one…</option>
-                <option>Instagram</option>
-                <option>TikTok</option>
-                <option>Friend / referral</option>
-                <option>Search</option>
-                <option>Event / pop-up</option>
-                <option>Other</option>
-              </select>
-              <div class="invalid-feedback">This field is required.</div>
-            </div>
-            <div class="col-12">
-              <label class="form-label" for="message">Message <span class="text-danger">*</span></label>
-              <textarea class="form-control" id="message" name="message" rows="6" required placeholder="Include SKU(s), payment method, and shipping details…"></textarea>
-              <div class="invalid-feedback">Please enter a message.</div>
-            </div>
-            <div class="col-12">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="yes" id="confirm21b" name="confirm21" required>
-                <label class="form-check-label" for="confirm21b">I confirm I am 21+ years of age. <span class="text-danger">*</span></label>
-                <div class="invalid-feedback">Confirmation is required.</div>
-              </div>
-            </div>
-          </div>
+       <form id="contact-form" action="https://formspree.io/f/xnjovaqr" method="POST">
 
-          <div class="d-flex flex-wrap gap-2 mt-4">
-            <button class="btn btn-olive" type="submit">Send message</button>
-            <button class="btn btn-outline-light" type="reset">Reset</button>
-          </div>
+  <!-- Inline status messages (accessible) -->
+  <div class="alert alert-success d-none mt-2"
+       data-fs-success
+       role="status"
+       aria-live="polite">
+    Message sent — we’ll get back to you shortly.
+  </div>
 
-          <p class="small text-subtle mt-3 mb-0">Note: This form doesn’t process payments. Use the payment links on the shop page, then message us your details.</p>
-        </form>
+  <div class="alert alert-danger d-none mt-2"
+       data-fs-error
+       role="alert"
+       aria-live="assertive">
+    Sorry — something went wrong. Please try again.
+  </div>
+
+  <div class="row g-3">
+    <div class="col-md-6">
+      <label class="form-label" for="name">Name <span class="text-danger">*</span></label>
+      <input class="form-control"
+             id="name"
+             name="name"
+             type="text"
+             required
+             data-fs-field>
+      <div class="invalid-feedback d-block d-none" data-fs-error="name">
+        Name is required.
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label" for="phone">Phone <span class="text-danger">*</span></label>
+      <input class="form-control"
+             id="phone"
+             name="phone"
+             type="tel"
+             required
+             inputmode="tel"
+             placeholder="(555) 555-5555"
+             data-fs-field>
+      <div class="invalid-feedback d-block d-none" data-fs-error="phone">
+        Phone number is required.
+      </div>
+    </div>
+
+    <div class="col-12">
+      <label class="form-label" for="email">Email</label>
+      <input class="form-control"
+             id="email"
+             name="email"
+             type="email"
+             placeholder="you@example.com"
+             data-fs-field>
+      <div class="form-text text-subtle">Optional, but helpful for receipts and order updates.</div>
+      <div class="invalid-feedback d-block d-none" data-fs-error="email"></div>
+    </div>
+
+    <div class="col-12">
+      <label class="form-label" for="heard">How did you hear about us? <span class="text-danger">*</span></label>
+      <select class="form-select"
+              id="heard"
+              name="heard"
+              required
+              data-fs-field>
+        <option value="" selected disabled>Select one…</option>
+        <option>Instagram</option>
+        <option>TikTok</option>
+        <option>Friend / referral</option>
+        <option>Search</option>
+        <option>Event / pop-up</option>
+        <option>Other</option>
+      </select>
+      <div class="invalid-feedback d-block d-none" data-fs-error="heard">
+        This field is required.
+      </div>
+    </div>
+
+    <div class="col-12">
+      <label class="form-label" for="message">Message <span class="text-danger">*</span></label>
+      <textarea class="form-control"
+                id="message"
+                name="message"
+                rows="6"
+                required
+                placeholder="Include SKU(s), payment method, and shipping details…"
+                data-fs-field></textarea>
+      <div class="invalid-feedback d-block d-none" data-fs-error="message">
+        Please enter a message.
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="form-check">
+        <input class="form-check-input"
+               type="checkbox"
+               value="yes"
+               id="confirm21b"
+               name="confirm21"
+               required
+               data-fs-field>
+        <label class="form-check-label" for="confirm21b">
+          I confirm I am 21+ years of age. <span class="text-danger">*</span>
+        </label>
+        <div class="invalid-feedback d-block d-none" data-fs-error="confirm21">
+          Confirmation is required.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex flex-wrap gap-2 mt-4">
+    <!-- data-fs-submit-btn prevents double submits (auto-disables while sending) -->
+    <button class="btn btn-olive" type="submit" data-fs-submit-btn>
+      Send message
+    </button>
+    <button class="btn btn-outline-light" type="reset">
+      Reset
+    </button>
+
+  </div>
+
+  <p class="small text-subtle mt-3 mb-0">
+    Note: This form doesn’t process payments. Use the payment links on the shop page, then message us your details.
+  </p>
+</form>
       </div>
     </div>
 
@@ -173,6 +248,62 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="/assets/js/main.js"></script>
+<script>
+  window.formspree = window.formspree || function () {
+    (formspree.q = formspree.q || []).push(arguments);
+  };
+
+  formspree('initForm', {
+    formElement: '#contact-form',
+    formId: 'xnjovaqr'
+  });
+</script>
+	<script>
+  (function () {
+    const form = document.querySelector('#contact-form');
+    if (!form) return;
+
+    const successEl = form.querySelector('[data-fs-success]');
+    if (!successEl) return;
+
+    const HIDE_AFTER_MS = 7000; // 7 seconds (tweak as you like)
+    let hideTimer = null;
+
+    function isVisible(el) {
+      // visible if it doesn't have d-none and has layout
+      return !el.classList.contains('d-none') && (el.offsetWidth || el.offsetHeight || el.getClientRects().length);
+    }
+
+    function scheduleHide() {
+      // Don't stack timers
+      if (hideTimer) clearTimeout(hideTimer);
+
+      hideTimer = setTimeout(() => {
+        // If user is interacting with it (focus inside), wait a bit more
+        if (successEl.contains(document.activeElement)) {
+          scheduleHide();
+          return;
+        }
+        successEl.classList.add('d-none');
+      }, HIDE_AFTER_MS);
+    }
+
+    // Watch for class changes so we detect when Formspree shows success
+    const observer = new MutationObserver(() => {
+      if (isVisible(successEl)) {
+        scheduleHide();
+      }
+    });
+
+    observer.observe(successEl, { attributes: true, attributeFilter: ['class'] });
+
+    // Also hide success when the user starts editing again (nice UX)
+    form.addEventListener('input', () => {
+      if (isVisible(successEl)) successEl.classList.add('d-none');
+    });
+  })();
+</script>
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 
 </body>
 </html>

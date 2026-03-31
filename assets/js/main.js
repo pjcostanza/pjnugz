@@ -121,21 +121,10 @@ function showGate() {
   }
 
   // --- Contact form validation ---
-  const contactForm = document.getElementById('contactForm');
-  if (contactForm) {
-    contactForm.addEventListener('submit', (event) => {
-      if (!contactForm.checkValidity()) {
-        event.preventDefault();
-        event.stopPropagation();
-      }
-      contactForm.classList.add('was-validated');
-    }, false);
-  }
-})();
+  const contactForm = document.getElementById('contact-form');
 
-// Clear form fields after submission so back-button doesn't restore data
-window.onbeforeunload = () => {
-  for (const form of document.getElementsByTagName('form')) {
-    form.reset();
-  }
-};
+if (contactForm) {
+  window.addEventListener('pageshow', function (event) {
+    if (event.persisted) contactForm.reset();
+  });
+}
